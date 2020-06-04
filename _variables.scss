@@ -1,0 +1,52 @@
+// To custome the grid override these variables
+
+$grid-row-col-classes:               true    !default;
+$grid-order-classes:                 true    !default;
+$grid-container-classes:             true    !default;
+$grid-container-fluid-classes:       true    !default;
+$grid-offest-classes:                true    !default;
+$grid-display-classes:               true    !default;
+$grid-flex-alignment-classes:        true    !default;
+$grid-flex-alignment-all-screens:    true    !default;
+
+//    $grid-flex-alignment-all-screens-> if you wanna generate flex classes with  
+//    xs , sm , md and lg
+
+//    #if the variable true 
+//        The expected result is 
+//        .flex-xs-row , .flex-sm-row , .flex-md-row and .flex-lg-row 
+//    #if the variable false
+//        The expected result is 
+//        .flex-row      
+
+
+$grid-columns:                   12          !default;
+$grid-gutter-width:              30px        !default;
+
+
+$screen-xs:                      480px       !default;
+$screen-sm:                      768px       !default;
+$screen-md:                      992px       !default;
+$screen-lg:                      1200px      !default;
+
+
+$container-max-width-sm:         720px       !default;
+$container-max-width-md:         960px       !default;
+$container-max-width-lg:         1140px      !default;
+
+
+$displays: none, inline, inline-block, block, flex, inline-flex !default;
+
+
+$grid-breakpoints: (
+    xs: $screen-xs,
+    sm: $screen-sm,
+    md: $screen-md,
+    lg: $screen-lg
+);
+
+$container-max-widths: (
+    sm: $container-max-width-sm,
+    md: $container-max-width-md,
+    lg: $container-max-width-lg
+);
