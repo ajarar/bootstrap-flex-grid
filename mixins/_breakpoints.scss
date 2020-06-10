@@ -4,7 +4,6 @@
 
 @function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
     $min: map-get($breakpoints, $name);
-    $smallest-screen: nth(nth($breakpoints, 1), 1);
     @return if($min != $screen-xs, $min, xs);
 }
 
