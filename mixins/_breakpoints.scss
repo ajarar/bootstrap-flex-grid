@@ -23,3 +23,11 @@
         }
     }
 }
+
+@mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
+    
+    @media (min-width: map-get($breakpoints, $name)) {
+        @content;
+    }
+    
+}

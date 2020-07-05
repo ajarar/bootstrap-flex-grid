@@ -23,6 +23,7 @@
 }
 
 
+
 // Remove the negative margin from default .row, then the horizontal padding
 // from all immediate children columns (to prevent runaway style inheritance).
 .no-gutters {
@@ -36,4 +37,19 @@
     }
 }
 
+// this customized in UX3 level
+// Equalize children height in row, line by line by flexbox
+.row__equalize-children-height {
+    display: flex;
+    flex-wrap: wrap;
 
+    > [class*='col-'] {
+        display: flex;
+        flex-direction: column;
+    }
+    // Targeting safari
+    &:before, &:after {
+        content: ' ';
+        display: flex;
+    }
+}

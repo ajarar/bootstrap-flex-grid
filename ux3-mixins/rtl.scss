@@ -1,0 +1,132 @@
+// THIS FILE SHOULD REMOVED IF WE WANNA USE USE THIS GRID 
+// THIS FILE ADDED FOR TESTING 
+$has-rtl-support : true;
+@mixin ltr-rtl($property_name,$val,$normalize:true,$styles:()) {
+    $shortMap: (
+        'ml':'margin-left',
+        'mr':'margin-right',
+        'pl':'padding-left',
+        'pr':'padding-right',
+        'bl':'border-left',
+        'br':'border-right',
+    );
+
+    @if (map_get($shortMap,$property_name) != null) {
+        #{map_get($shortMap,$property_name)}: $val;
+    } @else {
+        #{$property_name}: $val;
+    }
+
+    @if (variable_exists('has-rtl-support') and $has-rtl-support and $property_name !='') {
+        [dir="rtl"] & {
+            @if ($property_name == "left") {
+                right: $val;
+                @if ($normalize) {
+                    left: auto;
+                }
+            } @else if ($property_name == "right") {
+                left: $val;
+                @if ($normalize) {
+                    right: auto;
+                }
+            } @else if ($property_name == "ml" or $property_name == "margin-left") {
+                margin-right: $val;
+                @if ($normalize) {
+                    margin-left: 0;
+                }
+            } @else if ($property_name == "mr" or $property_name == "margin-right") {
+                margin-left: $val;
+                @if ($normalize) {
+                    margin-right: 0;
+                }
+            } @else if ($property_name == "pl" or $property_name == "padding-left") {
+                padding-right: $val;
+                @if ($normalize) {
+                    padding-left: 0;
+                }
+            } @else if ($property_name == "pr" or $property_name == "padding-right") {
+                padding-left: $val;
+                @if ($normalize) {
+                    padding-right: 0;
+                }
+            } @else if ($property_name == "bl" or $property_name == "border-left") {
+                border-right: $val;
+                @if ($normalize) {
+                    border-left: 0;
+                }
+            } @else if ($property_name == "br" or $property_name == "border-right") {
+                border-left: $val;
+                @if ($normalize) {
+                    border-right: 0;
+                }
+            } @else if ($property_name == "text-align") {
+                @if ($val == left) {
+                    text-align: right;
+                } @else {
+                    text-align: left;
+                }
+            } @else if ($property_name == "float") {
+                @if ($val == left) {
+                    float: right;
+                } @else {
+                    float: left;
+                }
+            }
+
+            @each $p, $v in $styles {
+                #{$p}: $v;
+            }
+        }
+    }
+}
+
+$rotated-icons: '.icon-arrow_l', '.icon-arrow_r' !default;
+
+@function is-absolute-length($value) {
+    @return index('cm' 'mm' 'in' 'px' 'pt' 'pc', unit($value)) != null;
+}
+
+@function is-angle($value) {
+    @return index('deg' 'rad' 'grad' 'turn', unit($value)) != null;
+}
+
+@mixin rtl-translateX($x) {
+    $ltr: $x;
+    $rtl: -1 * $x;
+
+    @if (is-absolute-length($x) == false and unit($x) != '%') {
+        $ltr: #{$x}px;
+        $rtl: #{$rtl}px
+    }
+
+    transform: translateX($ltr);
+
+    @if ($has-rtl-support) {
+        [dir="rtl"] & {
+            transform: translateX($rtl);
+        }
+    }
+}
+
+@mixin rtl-transform($val:null,$rtl-val:null) {
+
+    @if ($val != null) {
+        transform: $val;
+    }
+
+    @if ($has-rtl-support and $rtl-val != null) {
+        [dir="rtl"] & {
+            transform: $rtl-val;
+        }
+    }
+}
+
+@if ($has-rtl-support) {
+    [dir="rtl"] {
+        @each $icon in $rotated-icons {
+            #{$icon}:before {
+                transform: rotate(180deg);
+            }
+        }
+    }
+}

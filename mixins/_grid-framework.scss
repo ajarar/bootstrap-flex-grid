@@ -65,8 +65,36 @@
                 @for $i from 0 through ($columns - 1) {
                     @if not($infix == "" and $i == 0) {
                         // Avoid emitting useless .offset-0
-                        .offset#{$infix}-#{$i} {
+                        .col#{$infix}-offset-#{$i} {
                             @include make-col-offset($i, $columns);
+                        }
+                    }
+                }
+            }
+
+
+            @if $grid-col-push-classes {
+                .col#{$infix}-push-0 {
+                    left: auto;
+                }
+                @for $i from 1 through $columns {
+                    @if not($infix == "") {
+                        .col#{$infix}-push-#{$i} {
+                            @include make-col-push($i, $columns);
+                        }
+                    }
+                }
+            }
+            
+            
+            @if $grid-col-pull-classes {
+                .col#{$infix}-pull-0 {
+                    right: auto;
+                }
+                @for $i from 1 through $columns {
+                    @if not($infix == "") {
+                        .col#{$infix}-pull-#{$i} {
+                            @include make-col-pull($i, $columns);
                         }
                     }
                 }

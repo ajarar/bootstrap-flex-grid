@@ -46,5 +46,16 @@
 
 @mixin make-col-offset($size, $columns: $grid-columns) {
     $num: $size / $columns;
-    margin-left: if($num == 0, 0, percentage($num));
+    @include ltr-rtl('margin-left', if($num == 0, 0, percentage($num)));
+}
+
+@mixin make-col-push($size, $columns: $grid-columns) {
+    $num: $size / $columns;
+    @include ltr-rtl('left', if($num == 0, 0, percentage($num)));
+}
+
+
+@mixin make-col-pull($size, $columns: $grid-columns) {
+    $num: $size / $columns;
+    @include ltr-rtl('right', if($num == 0, 0, percentage($num)));
 }
