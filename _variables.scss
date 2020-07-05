@@ -39,7 +39,7 @@ $container-max-width-lg:         1170px      !default;
 
 
 $displays:  inline, inline-block, flex, inline-flex !default;
-// none , block
+// none , block we used hidden-* && visible-*
 
 $grid-breakpoints: (
     xs: $screen-xs,
