@@ -2,9 +2,22 @@
 //
 // Breakpoints are defined as a map of (name: minimum width), order from small to large:
 
+$smallest-break-point-name: xs;
+$smallest-break-point-value: map-get($grid-breakpoints, xs);
+
+@each $name , $value in $grid-breakpoints {
+
+    @if $value <= $smallest-break-point-value {
+        $smallest-break-point-value: $value;
+        $smallest-break-point-name: $name;
+    }
+}
+
+//@warn $smallest-break-point ; 
+
 @function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
     $min: map-get($breakpoints, $name);
-    @return if($min != $screen-xs, $min, xs);
+    @return if($min != $smallest-break-point-value , $min, $name); 
 }
 
 @function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
@@ -15,7 +28,7 @@
 // Makes the @content apply to the given breakpoint and wider.
 @mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
     $min: breakpoint-min($name, $breakpoints);
-    @if $min == xs {
+    @if $min == $smallest-break-point-name {
         @content;
     } @else {
         @media (min-width: $min) {
@@ -25,7 +38,6 @@
 }
 
 @mixin container-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
-    
     @media (min-width: map-get($breakpoints, $name)) {
         @content;
     }

@@ -11,7 +11,7 @@ $grid-display-classes:               true    !default;
 $grid-flex-alignment-classes:        true    !default;
 $grid-flex-alignment-all-screens:    true    !default;
 
-//    $grid-flex-alignment-all-screens-> if you wanna generate flex classes with  
+//    $grid-flex-alignment-all-screens -> if you wanna generate flex classes with  
 //    xs , sm , md and lg
 
 //    #if the variable true 
@@ -39,18 +39,19 @@ $container-max-width-lg:         1170px      !default;
 
 
 $displays:  inline, inline-block, flex, inline-flex !default;
-// none , block we used hidden-* && visible-*
+// none , block we use hidden-* && visible-*
+
 
 $grid-breakpoints: (
     xs: $screen-xs,
     sm: $screen-sm,
     md: $screen-md,
     lg: $screen-lg
-);
+) !default;
 
 $container-max-widths: (
     xs: $container-max-width-xs,
     sm: $container-max-width-sm,
     md: $container-max-width-md,
     lg: $container-max-width-lg
-);
+)  !default;

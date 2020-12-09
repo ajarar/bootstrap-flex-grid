@@ -1,6 +1,6 @@
 // THIS FILE SHOULD REMOVED IF WE WANNA USE USE THIS GRID 
 // THIS FILE ADDED FOR TESTING 
-$has-rtl-support : true;
+$has-rtl-support : false;
 @mixin ltr-rtl($property_name,$val,$normalize:true,$styles:()) {
     $shortMap: (
         'ml':'margin-left',
